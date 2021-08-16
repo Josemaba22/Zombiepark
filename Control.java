@@ -56,7 +56,7 @@ public class Control {
 
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         System.out.println("==========================================");
-        System.out.println("|               Zombipark                |");
+        System.out.println("|               Zombiepark               |");
         System.out.println("==========================================\n");
     
     }
