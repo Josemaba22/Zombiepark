@@ -106,7 +106,7 @@ public class Nodo {
         
         String str = "";
         str += "\n----------------------"+
-            "\nNODO INFO"+
+            "\nINFO ZONA"+
             "\n----------------------";
         str += "\nPunto: [ "+x+", "+y+" ]";  
         str += "\nZombies: " + zombies.size();
@@ -117,6 +117,19 @@ public class Nodo {
         str += "\n----------------------";
         return str;
     
+    }
+
+    public ArrayList<Recursos> imprimirRecursos(){
+
+        System.out.println("\n----------------------"+
+                            "\nRecoger Recursos"+
+                            "\n----------------------");
+        for(int i = 0; i < recursos.size(); i++){
+            System.out.println((i+1)+".-"+recursos.get(i));
+        }
+        System.out.println("----------------------");
+        return recursos;
+
     }
 
 }
