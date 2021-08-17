@@ -100,7 +100,6 @@ public class Nodo {
             else System.out.print("[ ]");
         }
 
-    
     }
 
     public String toString(){

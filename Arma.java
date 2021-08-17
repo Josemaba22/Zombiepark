@@ -1,10 +1,10 @@
 public class Arma extends Recursos{
 
-    int ataque;
+    int daño;
 
-    public Arma(String nombre,int ataque){
+    public Arma(String nombre,int daño){
         super(nombre);
-        this.ataque = ataque;
+        this.daño = daño;
     }
 
     public String toString(){

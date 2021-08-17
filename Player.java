@@ -6,7 +6,7 @@ public class Player {
     Recursos[] mochila;
     int salud;
     int contadorZombies;
-    int ataque;
+    int fuerza;
     int energia;
 
     public Player(String nombre){
@@ -16,7 +16,7 @@ public class Player {
         y = 5;
         salud = 10;
         contadorZombies = 0;
-        ataque = 3;
+        fuerza = 3;
         energia = 10;
         mochila =  new Recursos[5];
         
@@ -30,12 +30,12 @@ public class Player {
 
     public void caminar(Mapa mapa){
         
-        String flechaA = "\u05D0";
-        System.out.print("Escriba solo una (a,w,s,d) : "+flechaA);
+        System.out.print("Escriba solo una (a,w,s,d) : ");
         String mando;
         do{
             
             mando = Keyboard.readString();
+
             if(mando.equals("a") || mando.equals("w") || mando.equals("s") || mando.equals("d")){
                 int xAux = x;
                 int yAux = y;

@@ -26,14 +26,14 @@ public class Control {
     public void acciones() throws InterruptedException, IOException{
         
         System.out.println(
-            "\n---------------"+
+            "\n----------------------"+
             "\nACCIONES"+
-            "\n---------------"+
+            "\n----------------------"+
             "\n1.-Caminar"+
             "\n2.-info Nodo"+
             "\n3.-Mochila"+
-            "\n3.-Escarbar"+
-            "\n---------------");
+            "\n4.-Estatus Jugador"+
+            "\n----------------------");
         int opcion = 0;
 
         do{
