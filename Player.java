@@ -30,7 +30,7 @@ public class Player {
 
     public void caminar(Mapa mapa){
         
-        System.out.print("Escriba solo una (a,w,s,d) : ");
+        System.out.println("Escriba solo una (a,w,s,d) : ");
         String mando;
         do{
             

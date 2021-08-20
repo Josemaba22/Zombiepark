@@ -60,6 +60,7 @@ public class Control {
         System.out.println("|               Zombiepark               |");
         System.out.println("==========================================\n");
         mapa.imprimirMapa();
+        System.out.println(" ");
     
     }
 
@@ -67,7 +68,7 @@ public class Control {
 
         limpiarPantalla();
         player.caminar(mapa);  
-        mapa.setPunto(player.getPosicion().getX(), player.getPosicion().getY()); 
+        mapa.setPosicion(player.getPosicion().getX(), player.getPosicion().getY()); 
         limpiarPantalla();
         acciones();
 

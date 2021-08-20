@@ -1,13 +1,11 @@
 public class Mapa {
     
     Nodo[][] matrizMapa;
-    int x;
-    int y;
+    Punto posicion;
 
     public Mapa(int x, int y){
         matrizMapa = new Nodo[10][10];
-        this.x = x;
-        this.y = y;
+        posicion = new Punto(x, y);
         crearMapa();
         matrizMapa[x][y].setEstanciaPlayer(true);
     }
@@ -30,12 +28,14 @@ public class Mapa {
     }
 
     public Nodo getNodoActual(){
+        int x = posicion.getX();
+        int y = posicion.getY();
         return matrizMapa[x][y];
     }
 
-    public void setPunto(int x, int y){
-        this.x = x;
-        this.y = y;
+    public void setPosicion(int x, int y){
+        posicion.setX(x);
+        posicion.setY(y);
     }
 
 }

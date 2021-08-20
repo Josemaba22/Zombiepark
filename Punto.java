@@ -9,7 +9,7 @@ public class Punto {
     }
 
     public String toString(){
-        return "[ "+x+", "+y+" ]";
+        return "["+x+","+y+"]";
     }
 
     public void masX(){
