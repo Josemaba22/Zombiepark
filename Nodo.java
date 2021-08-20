@@ -6,15 +6,13 @@ public class Nodo {
 
     ArrayList<Zombie> zombies;
     ArrayList<Recursos> recursos;
-    int x;
-    int y;
+    Punto posicion;
     Random random;
     boolean estanciaPlayer = false;
 
     public Nodo(int x,int y){
 
-        this.x = x;
-        this.y = y;
+        posicion = new Punto(x,y);
         random = new Random();
         zombies = new ArrayList<Zombie>();
         recursos = new ArrayList<Recursos>();
@@ -92,6 +90,9 @@ public class Nodo {
 
     public void imprimirNodo(){
 
+
+        int x = posicion.getX();
+        int y = posicion.getY();
         if(x == 0 && y > 0) System.out.print("  "+y);
         if(x > 0 && y == 0) System.out.print(x+"   ");
         if(x == 0 && y == 0) System.out.print("y/x");
@@ -108,7 +109,7 @@ public class Nodo {
         str += "\n----------------------"+
             "\nINFO ZONA"+
             "\n----------------------";
-        str += "\nPunto: [ "+x+", "+y+" ]";  
+        str += "\nPunto: "+posicion;  
         str += "\nZombies: " + zombies.size();
         str += "\nRecursos: " + recursos.size();
         for(int i = 0; i < recursos.size(); i++){

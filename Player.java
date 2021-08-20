@@ -2,8 +2,7 @@ import java.util.ArrayList;
 
 public class Player {
     
-    int x;
-    int y;
+    Punto posicion;
     String nombre;
     Recursos[] mochila;
     int salud;
@@ -14,8 +13,7 @@ public class Player {
     public Player(String nombre){
 
         this.nombre = nombre;
-        x = 5;
-        y = 5;
+        posicion = new Punto(5,5);
         salud = 10;
         contadorZombies = 0;
         fuerza = 3;
@@ -39,8 +37,8 @@ public class Player {
             mando = Keyboard.readString();
 
             if(mando.equals("a") || mando.equals("w") || mando.equals("s") || mando.equals("d")){
-                int xAux = x;
-                int yAux = y;
+                int xAux = posicion.getX();
+                int yAux = posicion.getY();
                 if(mando.equals("w")){
                     xAux--;
                     if(xAux < 1){
@@ -78,26 +76,26 @@ public class Player {
 
         }while(true);
 
-        mapa.matrizMapa[x][y].setEstanciaPlayer(false);
+        mapa.matrizMapa[posicion.getX()][posicion.getY()].setEstanciaPlayer(false);
         switch(mando){
             case "w": 
-                x--;
-                mapa.matrizMapa[x][y].setEstanciaPlayer(true);
+                posicion.menosX();
+                mapa.matrizMapa[posicion.getX()][posicion.getY()].setEstanciaPlayer(true);
                 break;
             
             case "a":
-                y--; 
-                mapa.matrizMapa[x][y].setEstanciaPlayer(true);
+                posicion.menosY();
+                mapa.matrizMapa[posicion.getX()][posicion.getY()].setEstanciaPlayer(true);
                 break;
             
             case "s":
-                x++; 
-                mapa.matrizMapa[x][y].setEstanciaPlayer(true);
+                posicion.masX();
+                mapa.matrizMapa[posicion.getX()][posicion.getY()].setEstanciaPlayer(true);
                 break;
             
             case "d":
-                y++; 
-                mapa.matrizMapa[x][y].setEstanciaPlayer(true);
+                posicion.masY();
+                mapa.matrizMapa[posicion.getX()][posicion.getY()].setEstanciaPlayer(true);
                 break;
         }
 
@@ -160,12 +158,7 @@ public class Player {
         System.out.println("Has muerto, GAME OVER...");
     }
 
-    public int getX(){
-        return x;
+    public Punto getPosicion(){
+        return posicion;
     }
-
-    public int getY(){
-        return y;
-    }
-
 }

@@ -67,7 +67,7 @@ public class Control {
 
         limpiarPantalla();
         player.caminar(mapa);  
-        mapa.setPunto(player.getX(), player.getY()); 
+        mapa.setPunto(player.getPosicion().getX(), player.getPosicion().getY()); 
         limpiarPantalla();
         acciones();
 
