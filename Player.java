@@ -30,9 +30,10 @@ public class Player {
 
     public void caminar(Mapa mapa){
         
-        System.out.println("Escriba solo una (a,w,s,d) : ");
         String mando;
         do{
+            System.out.print("a.-Izquierda\nd.-Derecha\nw.-Arriba\ns.-Abajo"+
+                "\nEscriba solo una (a,w,s,d) : ");
             
             mando = Keyboard.readString();
 
@@ -42,7 +43,7 @@ public class Player {
                 if(mando.equals("w")){
                     xAux--;
                     if(xAux < 1){
-                        System.out.println("MUERTE SEGURA! VUELVE POR DONDE VENISTE!");
+                        System.out.println("MUERTE SEGURA! VUELVE POR DONDE VINISTE!");
                         System.out.println("VALOR INVALIDO! Escriba solo (a,s,d): ");       
                     }
                     else break;
@@ -50,7 +51,7 @@ public class Player {
                 if(mando.equals("a")){
                     yAux--; 
                     if(yAux < 1){
-                        System.out.println("MUERTE SEGURA! VUELVE POR DONDE VENISTE!");
+                        System.out.println("MUERTE SEGURA! VUELVE POR DONDE VINISTE!");
                         System.out.println("VALOR INVALIDO! Escriba solo (w,s,d): ");
                     }
                     else break;
@@ -58,7 +59,7 @@ public class Player {
                 if(mando.equals("s")){
                     xAux++; 
                     if(xAux > mapa.matrizMapa.length-1){
-                        System.out.println("MUERTE SEGURA! VUELVE POR DONDE VENISTE!");
+                        System.out.println("MUERTE SEGURA! VUELVE POR DONDE VINISTE!");
                         System.out.println("VALOR INVALIDO! Escriba solo (a,w,d): ");
                     }
                     else break;
@@ -66,7 +67,7 @@ public class Player {
                 if(mando.equals("d")){
                     yAux++; 
                     if(yAux > mapa.matrizMapa.length-1){
-                        System.out.println("MUERTE SEGURA! VUELVE POR DONDE VENISTE!");
+                        System.out.println("MUERTE SEGURA! VUELVE POR DONDE VINISTE!");
                         System.out.println("VALOR INVALIDO! Escriba solo (a,w,s): ");
                     }
                     else break;                    
@@ -105,19 +106,19 @@ public class Player {
 
         if(!mapa.getNodoActual().recursos.isEmpty()){
             if(mochila[mochila.length-1] == null){
-                ArrayList<Recursos> recursos = mapa.getNodoActual().imprimirRecursos();
+                ArrayList<Recursos> recursosAux = mapa.getNodoActual().imprimirRecursos();
                 int opcion;
                 do{
         
                     System.out.print("Recoger recurso -> Opción: ");
                     opcion = Keyboard.readInt();
-                    if(opcion < 1 || opcion > recursos.size())System.out.println("VALOR INVALIDO!");
+                    if(opcion < 1 || opcion > recursosAux.size())System.out.println("VALOR INVALIDO!");
                     else break;
         
                 }while(true);
                 for(int i = 0; i < mochila.length; i++){
                     if(mochila[i] == null){
-                        mochila[i] = recursos.get(opcion-1);
+                        mochila[i] = recursosAux.get(opcion-1);
                         System.out.println("Recogiste: "+mochila[i]);
                         mapa.getNodoActual().recursos.remove(opcion-1);
                         break;
@@ -128,17 +129,64 @@ public class Player {
 
     }
 
+    public void tirarObjeto(Mapa mapa){
+
+        imprimirMochila();
+
+        if(mochila[0] != null){
+
+            // Pedir por teclado una opcion
+            int opcion;
+            do{
+    
+                System.out.print("Tirar Objeto -> Opción: ");
+                opcion = Keyboard.readInt();
+                if(opcion < 1 || opcion > mochila.length)System.out.println("VALOR INVALIDO!");
+                else {
+                    opcion--;
+                    if(mochila[opcion] == null){
+                    System.out.println("No hay objetos en esa opción...");
+                    } else break;
+                }
+    
+            }while(true);
+    
+            // Depositar objeto en el nodo actual del mapa
+            mapa.getNodoActual().recursos.add(mochila[opcion]);
+            System.out.println("Tiraste el objeto: "+mochila[opcion]);
+            mochila[opcion] = null;
+            
+            // Ordenar nulls en mochila
+            Recursos mochilaAux[] = new Recursos[5];
+            int i = 0;
+            int j = 0;
+            int k = mochilaAux.length-1;
+            while( i < mochila.length ){
+                if(mochila[i] != null){
+                    mochilaAux[j] = mochila[i];
+                    i++;
+                    j++;
+                }else {
+                    mochilaAux[k] = null;
+                    i++;
+                    k--;
+                }
+            }
+            mochila = mochilaAux; // Mochila ordenada
+
+        }else System.out.println("No hay objetos que tirar...");
+
+    }
+
     public void imprimirMochila(){
         
-        if(mochila[0] != null){
-            System.out.println("\n----------------------"+
-                                "\nINVENTARIO"+
-                                "\n----------------------");
-            for(int i = 0; i < mochila.length; i++){
-                System.out.println((i+1)+".-"+mochila[i]);
-            }
-            System.out.println("----------------------");
-        }else System.out.println("INVENTARIO VACIO...");
+        System.out.println("\n----------------------"+
+                            "\nINVENTARIO"+
+                            "\n----------------------");
+        for(int i = 0; i < mochila.length; i++){
+            System.out.println((i+1)+".-"+mochila[i]);
+        }
+        System.out.println("----------------------");
         
     }
 

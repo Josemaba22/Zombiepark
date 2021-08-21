@@ -30,15 +30,16 @@ public class Control {
             "\n----------------------"+
             "\n1.-Caminar"+
             "\n2.-Info Zona"+
-            "\n3.-Recoger objeto"+
-            "\n4.-Inventario"+
+            "\n3.-Inventario"+
+            "\n4.-Recoger objeto"+
+            "\n5.-Tirar objeto"+
             "\n----------------------");
         int opcion = 0;
 
         do{
             System.out.print("Opción: ");
             opcion = Keyboard.readInt();
-            if(opcion < 1 || opcion > 4){
+            if(opcion < 1 || opcion > 5){
                 System.out.println("VALOR INVALIDO!");
             }else break;
         }while(true);
@@ -46,16 +47,25 @@ public class Control {
         switch(opcion){
             case 1: caminar();break;
             case 2: infoNodo();break;
-            case 3: recogerObjeto();break;
-            case 4: Inventario();break;
+            case 3: inventario();break;
+            case 4: recogerObjeto();break;
+            case 5: tirarObjeto();break;
             default: System.out.println("SAS");
         }
 
     }
     
     public void limpiarPantalla() throws InterruptedException, IOException{
-
+        
+        // Limpia la pantalla de la consola
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+
+        encabezado();
+    
+    }
+
+    public void encabezado(){
+        
         System.out.println("==========================================");
         System.out.println("|               Zombiepark               |");
         System.out.println("==========================================\n");
@@ -90,12 +100,20 @@ public class Control {
 
     }
 
-    public void Inventario() throws InterruptedException, IOException{
+    public void inventario() throws InterruptedException, IOException{
         
         limpiarPantalla();
         player.imprimirMochila();
         acciones();
 
+    }
+
+    public void tirarObjeto() throws InterruptedException, IOException{
+
+        limpiarPantalla();
+        player.tirarObjeto(mapa);
+        acciones();
+        
     }
     
 }
